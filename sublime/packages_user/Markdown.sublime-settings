@@ -1,0 +1,7 @@
+// These settings override both User and Default settings for the Markdown syntax
+{
+    "font_face": "Input Mono Light",
+    "font_size": 10.5,
+    "draw_centered": false,
+    "wrap_width": 170
+}

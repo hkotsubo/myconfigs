@@ -1,0 +1,5 @@
+{
+    "cmd": ["C:/php7/php.exe", "$file"],
+    "file_regex": "php$",
+    "selector": "source.php"
+}

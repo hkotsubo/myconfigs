@@ -1,0 +1,18 @@
+{
+	"color_scheme": "Packages/Color Scheme - Default/Celeste.sublime-color-scheme",
+	"detect_indentation": false,
+	"font_face": "Input Mono Light",
+	"font_size": 11,
+	"http_proxy": "host:port",
+	"https_proxy": "host:port",
+	"ignored_packages":
+	[
+		"Markdown",
+		"Vintage"
+	],
+	"proxy_password": "pass",
+	"proxy_username": "user",
+	"show_encoding": true,
+	"theme": "Default.sublime-theme",
+	"translate_tabs_to_spaces": true
+}

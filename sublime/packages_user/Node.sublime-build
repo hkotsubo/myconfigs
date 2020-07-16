@@ -1,0 +1,5 @@
+{
+    "cmd": ["C:/node-v14.4.0-win-x64/node.exe", "$file"],
+    "file_regex": "js$",
+    "selector": "source.js"
+}

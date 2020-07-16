@@ -1,0 +1,44 @@
+[user]
+	name = Hugo Kotsubo
+	email = mail@mail.com
+[credential]
+	helper = store --file ~/.git-credentials
+[pretty]
+	graph=format:"%C(#3299ff)%ad %C(auto)%h %C(#cdcd51)[%p] %C(#eeeeee bold)(%an)%C(auto)%d: %s"
+	ultrafull=format:"%C(yellow bold)commit %H%C(auto)%d\n%C(yellow)parent %P\n%C(yellow)tree   %T\n%C(green bold)Author:     %an <%ae>\n%C(green bold)AuthorDate: %ad\n%C(#3299ff)Committer:  %cn <%ce>\n%C(#3299ff)CommitDate: %cd\n\n%C(auto)%B"
+[log]
+	date=format:"%Y-%m-%d %H:%M:%S"
+[alias]
+	c = commit
+	ca = commit -a
+	ch = checkout
+	l = log --decorate
+	lu = log --decorate --pretty=ultrafull
+	r = remote
+	st = stash
+	s = status
+	p = push --verbose
+	po = push --verbose origin
+	m = merge --verbose
+	g = log --graph --pretty=graph --decorate 
+	alias = ! ~/bin/show_git_aliases.sh
+	b = branch
+	ab = branch -av # all branches, including remotes
+	nb = checkout -b # create new branch and switch to it
+	cb = rev-parse --abbrev-ref HEAD # show current branch
+	a = add -v
+	lf = fsck --no-reflogs --unreachable # unreachable objects
+	del = ! git reflog expire --expire-unreachable=now --all && git gc --prune=now # delete all unreachable objects
+	changes = diff --name-status -r
+	d = diff
+	dc = diff --cached
+	f = fetch --all --verbose # fetch all remotes
+	unstage = reset HEAD --
+	pull = pull --verbose
+	cf = show --name-only --stat # show files and message of a commit
+[color "status"]
+    untracked = yellow bold
+[merge]
+	conflictstyle = diff3
+[core]
+	filemode = false

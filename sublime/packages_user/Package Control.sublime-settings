@@ -1,0 +1,19 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"CodeFormatter",
+		"CoolFormat",
+		"Formatter",
+		"Indent XML",
+		"LiveReload",
+		"Markdown Table Formatter",
+		"MarkdownEditing",
+		"MarkdownLivePreview",
+		"MarkdownPreview",
+		"Package Control"
+	]
+}
