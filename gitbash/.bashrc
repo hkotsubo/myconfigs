@@ -92,3 +92,14 @@ command_not_found_handle () {
 
 alias mvnproperties='MAVEN_OPTS=" -XshowSettings:properties" mvn --version'
 alias maventest='mvn clean test -DskipTests=false -DfailIfNoTests=false'
+
+# Ubuntu: change terminal title
+function set-title() {
+  if [[ -z "$ORIG" ]]; then
+    ORIG=$PS1
+  fi
+  TITLE="\[\e]2;$*\a\]"
+  PS1=${ORIG}${TITLE}
+}
+# not using the function above; using specific commands instead
+export PS1="\[\033[1m\033[31m\$(get_git_branch)\033[36m\][\u@\h:\w]\[\033[0m\] \[\e]2;\$(get_git_branch)\$(basename \$(pwd))\a\]"
