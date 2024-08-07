@@ -195,7 +195,7 @@ PS_RED=$(tput setaf 1)
 PS_GREEN=$(tput setaf 2)
 PS_CYAN=$(tput setaf 6)
 PS_WHITE=$(tput setaf 7)
-PS_RESET=$(tput sgr0)
+PS_RESET="\[\033[0m\]"
 PS_BOLD=$(tput bold)
 # \[\e2; serve para setar o título da aba do terminal, assim ela também mostra o nome do branch e do diretório atual
 export PS1="${PS_BOLD}${PS_RED}\$(get_git_branch)${PS_WHITE}[${PS_GREEN}\u@\h${PS_WHITE}:${PS_CYAN}\w${PS_WHITE}]\n> ${PS_RESET}\[\e]2;\$(get_git_branch)\W\a\]"
