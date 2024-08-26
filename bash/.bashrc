@@ -187,10 +187,6 @@ function set-title() {
   PS1=${ORIG}${TITLE}
 }
 
-
-#export PS1="\[\033[1m\033[31m\$(get_git_branch)\033[36m\][\u@git-bash:\w]\[\033[0m\] "
-#export PS1="\[\033[1m\033[31m\$(get_git_branch)\033[36m\][\u@\h:\w]\[\033[0m\] "
-
 PS_RED=$(tput setaf 1)
 PS_GREEN=$(tput setaf 2)
 PS_CYAN=$(tput setaf 6)
@@ -198,17 +194,15 @@ PS_WHITE=$(tput setaf 7)
 PS_RESET="\[\033[0m\]"
 PS_BOLD=$(tput bold)
 # \[\e2; serve para setar o título da aba do terminal, assim ela também mostra o nome do branch e do diretório atual
-export PS1="${PS_BOLD}${PS_RED}\$(get_git_branch)${PS_WHITE}[${PS_GREEN}\u@\h${PS_WHITE}:${PS_CYAN}\w${PS_WHITE}]\n> ${PS_RESET}\[\e]2;\$(get_git_branch)\W\a\]"
+export PS1="${PS_BOLD}${PS_RED}\$(get_git_branch)${PS_WHITE}[${PS_GREEN}\u@\h${PS_WHITE}:${PS_CYAN}\w${PS_WHITE}]\n$ ${PS_RESET}\[\e]2;\$(get_git_branch)\W\a\]"
 #export PS1="\[\033[1m\033[31m\$(get_git_branch)\033[36m\][\u@\h:\w]\n>\[\033[0m\] \[\e]2;\$(get_git_branch)\W\a\]"
 
 eval "$(register-python-argcomplete pipx)"
-
 
 alias gcc='gcc -std=c11 -pedantic-errors -Wall -Wextra -Werror'
 alias clang='clang -std=c11 -pedantic-errors -Wall -Wextra -Werror'
 
 # bash parameter completion for the dotnet CLI
-
 _dotnet_bash_complete()
 {
   local word=${COMP_WORDS[COMP_CWORD]}
