@@ -8,16 +8,15 @@ case $- in
       *) return;;
 esac
 
+export EDITOR="/usr/bin/vim"
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
+export LANGUAGE=en_US:en
 
 # append to the history file, don't overwrite it
 shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -86,11 +85,18 @@ fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+source ~/.bash_completion.d/complete_alias
+source ~/.inputrc
 
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias mvn11='JAVA_HOME=/usr/lib/jvm/jdk-11.0.24+8 mvn'
+alias mvn17='JAVA_HOME=/usr/lib/jvm/jdk-17.0.12+7 mvn'
+alias mvn20='JAVA_HOME=/usr/lib/jvm/jdk-20.0.2+9 mvn'
+alias mvn21='JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 mvn'
+#alias git='LANGUAGE=en_US:en git'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -116,9 +122,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=".:~/bin:$PATH:/usr/apps/Liquibase-4.3.5-bin"
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+export PATH=".:/snap/bin:~/bin:$PATH:/usr/apps/Liquibase-4.3.5-bin"
+# Add .NET Core SDK tools
+export PATH="$PATH:/home/h168971/.dotnet/tools::~/.local/bin"
 
+#export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+export JAVA_HOME="/usr/lib/jvm/jdk-11.0.24+8"
 export HISTSIZE=36000
 export HISTFILESIZE=36000
 
@@ -176,6 +185,13 @@ complete -o bashdefault -o default -o nospace -F _git_alias galias
 export NODE_OPTIONS="--max_old_space_size=2048"
 
 . /etc/bash_completion.d/mvn
+# . /etc/bash_completion.d/deno.bash
+# . /etc/bash_completion.d/clang
+
+complete -F _complete_alias mvn11
+complete -F _complete_alias mvn17
+complete -F _complete_alias mvn20
+complete -F _complete_alias mvn21
 
 alias dockerps="docker ps --format 'table {{ .ID }}\t{{.Image}}\t{{.Status}}\t{{ .Names }}'"
 
@@ -193,16 +209,19 @@ PS_CYAN=$(tput setaf 6)
 PS_WHITE=$(tput setaf 7)
 PS_RESET="\[\033[0m\]"
 PS_BOLD=$(tput bold)
-# \[\e2; serve para setar o título da aba do terminal, assim ela também mostra o nome do branch e do diretório atual
+# \[\e2; sets the title in terminal tab
 export PS1="${PS_BOLD}${PS_RED}\$(get_git_branch)${PS_WHITE}[${PS_GREEN}\u@\h${PS_WHITE}:${PS_CYAN}\w${PS_WHITE}]\n$ ${PS_RESET}\[\e]2;\$(get_git_branch)\W\a\]"
 #export PS1="\[\033[1m\033[31m\$(get_git_branch)\033[36m\][\u@\h:\w]\n>\[\033[0m\] \[\e]2;\$(get_git_branch)\W\a\]"
 
+
 eval "$(register-python-argcomplete pipx)"
+
 
 alias gcc='gcc -std=c11 -pedantic-errors -Wall -Wextra -Werror'
 alias clang='clang -std=c11 -pedantic-errors -Wall -Wextra -Werror'
 
 # bash parameter completion for the dotnet CLI
+
 _dotnet_bash_complete()
 {
   local word=${COMP_WORDS[COMP_CWORD]}
@@ -216,21 +235,21 @@ _dotnet_bash_complete()
   COMPREPLY=( $(compgen -W "$completions" -- "$word") )
 }
 
-complete -f -F _dotnet_bash_complete dotnet
+#complete -f -F _dotnet_bash_complete dotnet
 
 
-alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.9-complete.jar:." org.antlr.v4.Tool'
-alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.9-complete.jar:." org.antlr.v4.gui.TestRig'
+alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.13.2-complete.jar:." org.antlr.v4.Tool'
+alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.13.2-complete.jar:." org.antlr.v4.gui.TestRig'
 
 alias bugfix='ssh -t jbossdesenv ssh bugfix'
 alias bugfixlog='ssh -t logaplicacoes ssh bugfix'
 alias bugfixfdlv='ssh -t fdlv ssh bugfix'
-
-PATH="/home/hkotsubo/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/hkotsubo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/hkotsubo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/hkotsubo/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/hkotsubo/perl5"; export PERL_MM_OPT;
+alias vpn='snx'
+# PATH="/home/hkotsubo/perl5/bin${PATH:+:${PATH}}"; export PATH;
+# PERL5LIB="/home/hkotsubo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+# PERL_LOCAL_LIB_ROOT="/home/hkotsubo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+# PERL_MB_OPT="--install_base \"/home/hkotsubo/perl5\""; export PERL_MB_OPT;
+# PERL_MM_OPT="INSTALL_BASE=/home/hkotsubo/perl5"; export PERL_MM_OPT;
 
 
 
@@ -238,11 +257,10 @@ PERL_MM_OPT="INSTALL_BASE=/home/hkotsubo/perl5"; export PERL_MM_OPT;
 
 # prepare csc alias
 
-DOTNETDIR=$(dirname $(dirname $(dotnet --info | grep "Base Path" | cut -d' ' -f 6)))
-CSCPATH=$(find $DOTNETDIR -name csc.dll -print | sort | tail -n1)
-NETSTANDARDPATH=$(find $DOTNETDIR -path *sdk/*/ref/netstandard.dll ! -path *NuGetFallback* -print | sort | tail -n1)
-
-alias csc='dotnet $CSCPATH /r:$NETSTANDARDPATH '
+#DOTNETDIR=$(dirname $(dirname $(dotnet --info | grep "Base Path" | cut -d' ' -f 6)))
+#CSCPATH=$(find $DOTNETDIR -name csc.dll -print | sort | tail -n1)
+#NETSTANDARDPATH=$(find $DOTNETDIR -path *sdk/*/ref/netstandard.dll ! -path *NuGetFallback* -print | sort | tail -n1)
+#alias csc='dotnet $CSCPATH /r:$NETSTANDARDPATH '
 
 # prepare csc_run alias
 
@@ -270,3 +288,20 @@ if [ ! -f $DOTNETCSCRUNTIMECONFIG ]; then
 }
 EOF
 fi
+
+
+#. "$HOME/.asdf/asdf.sh"
+#. "$HOME/.asdf/completions/asdf.bash"
+
+# # bun
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH=$BUN_INSTALL/bin:$PATH
+# . "$HOME/.cargo/env"
+
+# . "$HOME/.asdf/asdf.sh"
+# . "$HOME/.asdf/completions/asdf.bash"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.9.3-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
