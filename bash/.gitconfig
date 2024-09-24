@@ -1,0 +1,72 @@
+[user]
+    name = Hugo Kotsubo
+    email = mail@mail.com
+[credential]
+    helper = store --file ~/.git-credentials
+[pretty]
+    graph=format:"%C(#3299ff)%ad %C(auto)%h %C(#cdcd51)[%p] %C(#eeeeee bold)(%an)%C(auto)%d: %s"
+    ultrafull=format:"%C(yellow bold)commit %H%C(auto)%d\n%C(yellow)parent %P\n%C(yellow)tree   %T\n%C(green bold)Author:     %an <%ae>\n%C(green bold)AuthorDate: %ad\n%C(#3299ff)Committer:  %cn <%ce>\n%C(#3299ff)CommitDate: %cd\n\n%C(auto)%B"
+[log]
+    date=format:"%Y-%m-%d %H:%M:%S"
+[alias]
+    alias = ! ~/bin/show_git_aliases.sh
+    a = add -v
+    b = branch
+    ab = branch -av # all branches, including remotes
+    nb = checkout -b # create new branch and switch to it
+    c = commit
+    ca = commit -a
+    ch = checkout
+    g = log --graph --pretty=graph --decorate 
+    l = log --decorate
+    lu = log --decorate --pretty=ultrafull
+    r = remote
+    st = stash
+    s = status
+    p = push --verbose
+    po = push --verbose origin
+    m = merge --verbose
+    cb = rev-parse --abbrev-ref HEAD # show current branch
+    lf = fsck --no-reflogs --unreachable # unreachable objects
+    del = ! git reflog expire --expire-unreachable=now --all && git gc --prune=now # delete all unreachable objects
+    changes = diff --name-status -r
+    d = diff
+    dc = diff --cached
+    f = fetch --all --verbose # fetch all remotes
+    unstage = reset HEAD --
+    pull = pull --verbose
+    cf = show --name-only --stat # show files and message of a commit
+[color "status"]
+    untracked = yellow bold
+[merge]
+    conflictstyle = diff3
+[core]
+    filemode = false
+    editor = vim
+    pager = delta # less -x1,5
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+[delta]
+    features = side-by-side line-numbers decorations
+    navigate = true    # use n and N to move between diff sections
+    side-by-side = true
+    syntax-theme = Dracula
+    plus-style = syntax "#003800"
+    minus-style = syntax "#3f0001"
+[delta "interactive"]
+    keep-plus-minus-markers = false
+[delta "decorations"]
+    file-style = omit #red bold
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = bold red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number
+    hunk-header-decoration-style = bold blue box ul
+    commit-decoration-style = blue box
+[delta "line-numbers"]
+    line-numbers-left-style = cyan
+    line-numbers-right-style = cyan
+    line-numbers-minus-style = 124
+    line-numbers-plus-style = 28
+[diff]
+    colorMoved = default
