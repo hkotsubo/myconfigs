@@ -97,6 +97,7 @@ alias mvn17='JAVA_HOME=/usr/lib/jvm/jdk-17.0.12+7 mvn'
 alias mvn20='JAVA_HOME=/usr/lib/jvm/jdk-20.0.2+9 mvn'
 alias mvn21='JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 mvn'
 #alias git='LANGUAGE=en_US:en git'
+alias issues='cd /home/h168971/projetos/folhaweb/issues/$(date +"%Y/%m")'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
