@@ -98,7 +98,7 @@ alias mvn20='JAVA_HOME=/usr/lib/jvm/jdk-20.0.2+9 mvn'
 alias mvn21='JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 mvn'
 #alias git='LANGUAGE=en_US:en git'
 alias issues='cd /home/h168971/projetos/folhaweb/issues/$(date +"%Y/%m")'
-alias gitless='git -c core.pager="less -x1,5"'
+alias gitless='git -c core.pager="less -x1,5" -c interactive.diffFilter="less -R"'
 
 complete -F _complete_alias gitless
 
