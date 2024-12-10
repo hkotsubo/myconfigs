@@ -323,3 +323,9 @@ fi
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.9.3-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
+
+function webm2gif() {
+    ffmpeg -y -i "$1" -vf palettegen _tmp_palette.png
+    ffmpeg -y -i "$1" -i _tmp_palette.png -filter_complex paletteuse -r 10  "${1%.webm}.gif"
+    rm _tmp_palette.png
+}
