@@ -100,6 +100,12 @@ alias mvn21='JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 mvn'
 alias issues='cd /home/h168971/projetos/folhaweb/issues/$(date +"%Y/%m")'
 alias gitless='git -c core.pager="less -x1,5" -c interactive.diffFilter="less -R"'
 
+complete -F _complete_alias ll
+complete -F _complete_alias la
+complete -F _complete_alias mvn11
+complete -F _complete_alias mvn17
+complete -F _complete_alias mvn20
+complete -F _complete_alias mvn21
 complete -F _complete_alias gitless
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -191,11 +197,6 @@ export NODE_OPTIONS="--max_old_space_size=2048"
 . /etc/bash_completion.d/mvn
 # . /etc/bash_completion.d/deno.bash
 # . /etc/bash_completion.d/clang
-
-complete -F _complete_alias mvn11
-complete -F _complete_alias mvn17
-complete -F _complete_alias mvn20
-complete -F _complete_alias mvn21
 
 alias dockerps="docker ps --format 'table {{ .ID }}\t{{.Image}}\t{{.Status}}\t{{ .Names }}'"
 
