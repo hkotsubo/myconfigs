@@ -261,6 +261,13 @@ _globalprotect_options() {
         COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
         return 0
     fi
+
+    case "${prev}" in
+        show) # list only CSV files
+            local options="--status"
+            COMPREPLY=( $(compgen -W "${options}" -- ${cur}) )
+        ;;
+    esac
 }
 
 complete -F _globalprotect_options globalprotect
