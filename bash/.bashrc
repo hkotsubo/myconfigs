@@ -99,6 +99,7 @@ alias mvn21='JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 mvn'
 #alias git='LANGUAGE=en_US:en git'
 alias issues='cd /home/h168971/projetos/folhaweb/issues/$(date +"%Y/%m")'
 alias gitless='git -c core.pager="less -x1,5" -c interactive.diffFilter="less -R"'
+alias find_exclude_target='find ./ -path "*/target/*" -prune -o'
 
 complete -F _complete_alias ll
 complete -F _complete_alias la
@@ -107,6 +108,7 @@ complete -F _complete_alias mvn17
 complete -F _complete_alias mvn20
 complete -F _complete_alias mvn21
 complete -F _complete_alias gitless
+complete -F _complete_alias find_exclude_target
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
